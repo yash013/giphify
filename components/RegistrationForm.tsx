@@ -20,7 +20,7 @@ const RegistrationForm = () => {
 		e.preventDefault();
 		try {
 			await signUp(data.email, data.password);
-			router.push('/dashboard');
+			router.push('/gif-search');
 		} catch (error: any) {
 			console.log(error.message);
 		}

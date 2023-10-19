@@ -20,7 +20,7 @@ const LoginForm = () => {
 		e.preventDefault();
 		try {
 			await logIn(data.email, data.password);
-			router.push('/dashboard');
+			router.push('/gif-search');
 		} catch (error: any) {
 			console.log(error.message);
 		}
@@ -42,7 +42,7 @@ const LoginForm = () => {
 						</h5>
 						<p className="text-center text-gray-500 dark:text-gray-200 text-md mb-8">
 							Please enter your login credentials to login to the
-							dashboard.
+							Giphify.
 						</p>
 						<div className="mb-5">
 							<label

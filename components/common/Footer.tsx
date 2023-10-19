@@ -3,7 +3,7 @@ function Footer() {
 		<>
 			<div className="flex items-center justify-center mt-14 ">
 				<a
-					href="https://github.com/realstoman/nextjs-firebase-auth"
+					href="https://github.com/yash013/giphify"
 					target="__blank"
 					className="text-gray-700 hover:text-gray-900 cursor-pointer underline text-xl"
 				>
