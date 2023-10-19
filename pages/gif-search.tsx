@@ -18,6 +18,7 @@ const GifSearchPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
   const [gifs, setGifs] = useState<Gif[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   const totalPages = Math.ceil(gifs.length / itemsPerPage);
 
@@ -28,6 +29,16 @@ const GifSearchPage: React.FC = () => {
   const handleGifsFetched = (fetchedGifs: Gif[]) => {
     setGifs(fetchedGifs);
     setCurrentPage(1); // Reset to the first page when new GIFs are fetched
+  };
+
+  const toggleFavorite = (gifId: string) => {
+    if (favorites.includes(gifId)) {
+      // If the GIF is already a favorite, remove it
+      setFavorites(favorites.filter(id => id !== gifId));
+    } else {
+      // If the GIF is not a favorite, add it
+      setFavorites([...favorites, gifId]);
+    }
   };
 
   const indexOfLastGif = currentPage * itemsPerPage;
@@ -41,8 +52,13 @@ const GifSearchPage: React.FC = () => {
         <div className={styles.gifGrid}>
           {currentGifs.map((gif) => (
             <div key={gif.id} className={styles.gifCard}>
-              <img src={gif.images.fixed_height.url} alt={gif.title} className={styles.gifImage} />
-              <p className={styles.gifTitle}>{gif.title}</p>
+              <div className={styles.gifImageContainer}>
+                <img src={gif.images.fixed_height.url} alt={gif.title} className={styles.gifImage} />
+                <p className={styles.gifTitle}>{gif.title}</p>
+              </div>
+              <button onClick={() => toggleFavorite(gif.id)} className={favorites.includes(gif.id) ? styles.favorite : styles.notFavorite}>
+                {favorites.includes(gif.id) ? "Remove from Favorites" : "Add to Favorites"}
+              </button>
             </div>
           ))}
         </div>
