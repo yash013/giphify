@@ -13,7 +13,7 @@ interface Gif {
 }
 
 interface FavoritesProps {
-  favoriteGifs: Gif[]; // Assuming you have a Gif interface defined
+  favoriteGifs: Gif[]; 
 }
 
 const Favorites: React.FC<FavoritesProps> = ({ favoriteGifs }) => {
