@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import GifSearch from '../components/GifSearch';
 import ProtectedRoute from '../components/ProtectedRoute';
+import Favorites from '../components/Favorites';
 import Pagination from '../components/Pagination';
 import styles from '../styles/GifSearch.module.css';
 
@@ -33,8 +34,8 @@ const GifSearchPage: React.FC = () => {
 
   const toggleFavorite = (gifId: string) => {
     if (favorites.includes(gifId)) {
-      // If the GIF is already a favorite, remove it
-      setFavorites(favorites.filter(id => id !== gifId));
+      const updatedFavorites = favorites.filter((id) => id !== gifId);
+      setFavorites(updatedFavorites);
     } else {
       // If the GIF is not a favorite, add it
       setFavorites([...favorites, gifId]);
@@ -63,6 +64,7 @@ const GifSearchPage: React.FC = () => {
           ))}
         </div>
         <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
+        {favorites.length > 0 && <Favorites favoriteGifs={gifs.filter((gif) => favorites.includes(gif.id))} />}
       </div>
     </ProtectedRoute>
   );
